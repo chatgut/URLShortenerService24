@@ -7,7 +7,7 @@ public class URLShortenerService {
     private HashMap<String, String> urlMap = new HashMap<>();
     private Random random = new Random();
     private static final String ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    private static final int SHORT_URL_LENGTH = 8;
+    private static final int SHORT_URL_LENGTH = 5;
 
     public String shortenURL(String longUrl){
         String shortUrl = generateRandomString();
