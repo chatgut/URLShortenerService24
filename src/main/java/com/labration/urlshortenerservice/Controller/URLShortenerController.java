@@ -4,6 +4,7 @@ import com.labration.urlshortenerservice.Service.URLShortenerService;
 import com.labration.urlshortenerservice.Url.UrlRequest;
 import com.labration.urlshortenerservice.Url.UrlResponse;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -13,7 +14,9 @@ import java.util.logging.Logger;
 public class URLShortenerController {
 
     private static final Logger LOG = Logger.getLogger(String.valueOf(URLShortenerController.class));
-    private URLShortenerService urlShortenerService = new URLShortenerService();
+
+    @Autowired
+    private URLShortenerService urlShortenerService;
 
     @PostMapping("/short")
     public UrlResponse shortenUrl(@RequestBody UrlRequest request, HttpServletRequest req) {

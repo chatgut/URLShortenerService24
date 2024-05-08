@@ -1,25 +1,34 @@
 package com.labration.urlshortenerservice.Service;
 
-import java.util.HashMap;
+import com.labration.urlshortenerservice.Entity.UrlEntity;
+import com.labration.urlshortenerservice.Url.UrlRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.Random;
 
+@Service
 public class URLShortenerService {
-    private HashMap<String, String> urlMap = new HashMap<>();
+    @Autowired
+    private UrlRepository urlRepository;
+
     private Random random = new Random();
     private static final String ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     private static final int SHORT_URL_LENGTH = 5;
 
     public String shortenURL(String longUrl){
         String shortUrl = generateRandomString();
-        while (urlMap.containsKey(shortUrl)){
+        while (urlRepository.existsById(shortUrl)){
             shortUrl = generateRandomString();
         }
-        urlMap.put(shortUrl, longUrl);
+        UrlEntity urlEntity = new UrlEntity(shortUrl, longUrl);
+        urlRepository.save(urlEntity);
         return shortUrl;
     }
 
     public String getLongURL(String shortURL){
-        return urlMap.get(shortURL);
+        UrlEntity urlEntity = urlRepository.findById(shortURL).orElse(null);
+        return urlEntity != null ? urlEntity.getLongurl() : null;
     }
 
     private String generateRandomString(){
