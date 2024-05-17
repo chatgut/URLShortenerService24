@@ -10,6 +10,8 @@ public class UrlEntity {
     private String shorturl;
     private String longurl;
 
+    public UrlEntity() {}
+
     public UrlEntity(String shorturl, String longurl) {
         this.shorturl = shorturl;
         this.longurl = longurl;
