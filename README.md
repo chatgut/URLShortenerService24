@@ -6,7 +6,7 @@ This is a simple URL shortener service that takes a long URL and returns a short
 - In a compose.yml file, add below:
 ```
   app:
-    image: erikasignal/url-shortener-service:latest
+    image: erikasignal/url-shortener-service:v3
     ports:
       - "8080:8080"
     environment:
@@ -23,7 +23,7 @@ This is a simple URL shortener service that takes a long URL and returns a short
 
 # Using the service with the API
 ### How to create a short URL
-`POST /short`
+- `POST /short`
 
 JSON body:
 ```
@@ -37,6 +37,6 @@ Example output:
     "short_url": "http://localhost:8080/F2jLE"
 }
 ```
-`GET /{ShortUrl}`
+- `GET /{ShortUrl}`
 
 GET: "http://localhost:8080/F2jLE"
